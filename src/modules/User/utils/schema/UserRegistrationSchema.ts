@@ -1,4 +1,3 @@
-import UserModel from "../../models/schemas/user/UserSchema";
 import {z} from "zod";
 
 /**

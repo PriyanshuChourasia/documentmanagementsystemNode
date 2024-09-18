@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import { Document } from "mongoose";
 
 export enum Gender{
@@ -13,4 +14,9 @@ export interface IUserSchemaInterface extends Document{
     gender:Gender;
     email:string;
     password:string;
+}
+
+
+export interface IUserModel extends Model<IUserSchemaInterface>{
+    findEmailExists(email:string): Promise<IUserSchemaInterface | null>;
 }

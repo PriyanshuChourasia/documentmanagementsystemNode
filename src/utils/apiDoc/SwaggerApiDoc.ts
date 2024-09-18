@@ -3,6 +3,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { Express,Response,Request } from "express";
 // import {version} from "../../../package.json";
 import swaggerUi from "swagger-ui-express";
+import { APIS } from "./SwaggerApisRoutes";
 
 
 
@@ -22,7 +23,7 @@ const options:swaggerJSDoc.Options={
         },
         servers:[
             {
-                url:`http://localhost:${env.PORT}`,
+                url:`https://localhost:${env.PORT}`,
                 description:"DMS Development server"
             },
             {
@@ -45,7 +46,7 @@ const options:swaggerJSDoc.Options={
             }
         ]
     },
-    apis:['./src/routes/**/*.ts','./src/utils/schemas/*.ts']
+    apis:APIS
 }
 
 
@@ -57,7 +58,7 @@ function swaggerDoc(app:Express){
     /** swagger ui page */
     app.use('/api/v1/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 
-    app.get("/api/v1/docs.json",(req:Request,res:Response)=>{
+    app.get("/api/v1/docs.json",(res:Response)=>{
         res.setHeader('Content-Type','application/json')
         res.send(swaggerSpec);
     });

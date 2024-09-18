@@ -1,5 +1,5 @@
 import { Mongoose } from "../../../config/database";
-import { IUserSchemaInterface } from "../interface/UserSchemaInterface";
+import { IUserModel, IUserSchemaInterface } from "../interface/UserSchemaInterface";
 
 const {Schema} = Mongoose;
 
@@ -24,11 +24,16 @@ const UserSchema = new Schema<IUserSchemaInterface>({
 },{
     optimisticConcurrency:true,
     timestamps:true,
-    minimize:true
+    minimize:true,
+    statics:{
+        findEmailExists(email:string){
+            return this.findOne({email})
+        }
+    }
 });
 
 
-const UserModel = Mongoose.model<IUserSchemaInterface>("Users",UserSchema);
+const UserModel = Mongoose.model<IUserSchemaInterface,IUserModel>("Users",UserSchema);
 
 
 export default UserModel;

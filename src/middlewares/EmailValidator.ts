@@ -1,5 +1,5 @@
 import{Request,Response,NextFunction} from "express";
-import UserModel from "../models/schemas/user/UserSchema";
+import UserModel from "../modules/User/model/UserSchema";
 import {StatusCodes} from "http-status-codes";
 
 
