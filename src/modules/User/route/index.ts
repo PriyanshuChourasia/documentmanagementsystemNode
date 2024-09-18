@@ -1,9 +1,8 @@
+import { validateEmail } from "@/middlewares/EmailValidator";
+import { validateRequest } from "@/middlewares/ValidationMiddleware";
+import { UserRegistrationSchema } from "@/utils/schemas/UserSchema";
 import express from "express";
-import { validateRequest } from "../../../middlewares/ValidationMiddleware";
-import { UserRegistrationSchema } from "../utils/schema/UserRegistrationSchema";
-import { validateEmail } from "../../../middlewares/EmailValidator";
-import UserController from "../controller/UserController";
-
+import UserController from "@modules/User/controller/UserController";
 const userRouter = express.Router();
 
 
@@ -53,6 +52,27 @@ userRouter.post('/', validateRequest(UserRegistrationSchema),validateEmail, User
  *      
  */
 userRouter.get('/all',UserController.index);
+
+
+/**
+ * @openapi
+ * /api/v1/user/:id:
+ *  get:
+ *      tags:
+ *          - User
+ *      summary: Get user by id
+ *      description: Retrive user by id
+ *      responses:
+ *          200:
+ *              description: User by id retrived successfully
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                        $ref: '#/components/schemas/GetUserById'
+ *          400:
+ *              description: Bad request
+ */
+userRouter.get('/:id',);
 
 
 

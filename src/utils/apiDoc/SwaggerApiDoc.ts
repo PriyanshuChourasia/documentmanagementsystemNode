@@ -1,9 +1,9 @@
-import { env } from "../../config/env.config";
+import { env } from "@/config/env.config";
 import swaggerJSDoc from "swagger-jsdoc";
 import { Express,Response,Request } from "express";
 // import {version} from "../../../package.json";
 import swaggerUi from "swagger-ui-express";
-import { APIS } from "./SwaggerApisRoutes";
+import { APIS } from "@/utils/apiDoc/SwaggerApisRoutes";
 
 
 

@@ -10,9 +10,23 @@
         "skipLibCheck": true,
         "resolveJsonModule": true, /*Enable importing JSON files*/
         "paths": {
-            "@modules/*":["modules/*"]
-        }
+           "@/*":["*"],
+           "@modules/*":["modules/*"]
+        },
+        "plugins": [
+            {
+                "transform":"typescript-transform-paths"
+            },
+            {
+                "transform":"typescript-transform-paths",
+                "afterDeclarations":true
+            }
+        ]
+    },
+    "ts-node": {
+        "transpileOnly": true,
+        "files": true
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules","dist"]
 }
