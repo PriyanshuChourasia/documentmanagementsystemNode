@@ -1,6 +1,6 @@
 import { validateEmail } from "@/middlewares/EmailValidator";
 import { validateRequest } from "@/middlewares/ValidationMiddleware";
-import { UserRegistrationSchema } from "@/utils/schemas/UserSchema";
+import { UserRegistrationSchema } from "@modules/User/utils/schema/UserRegistrationSchema";
 import express from "express";
 import UserController from "@modules/User/controller/UserController";
 const userRouter = express.Router();
@@ -40,6 +40,14 @@ userRouter.post('/', validateRequest(UserRegistrationSchema),validateEmail, User
  *          - User
  *      summary: Get all users
  *      description: Retrive all database users
+ *      parameters:
+ *          - in: header
+ *            name: Accept
+ *            description: json accepted
+ *            required: true
+ *            schema:
+ *              type: string
+ * 
  *      responses:
  *          200:
  *              description: User retrived successfully
@@ -52,6 +60,24 @@ userRouter.post('/', validateRequest(UserRegistrationSchema),validateEmail, User
  *      
  */
 userRouter.get('/all',UserController.index);
+
+
+/**
+ * @openapi
+ * /api/v1/user/authenticate:
+ *  post:
+ *      tags:
+ *          - User
+ *      summary: Login access by getting tokens
+ *      description: Get Login access
+ *      requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                        $ref: '#/components/schemas/UserLogin'
+ */
+userRouter.get('/authenticate',UserController.login)
 
 
 /**

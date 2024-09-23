@@ -28,4 +28,16 @@
  *              createdAt:
  *                  type: string
  *                  format: date-time
+ *      UserLogin:
+ *          type: object
+ *          required:
+ *              - email
+ *              - password
+ *          properties:
+ *              email:
+ *                  type: string
+ *                  default: Priyanshu
+ *              password:
+ *                  type: string
+ *                  default: password 
  */
