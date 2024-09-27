@@ -36,8 +36,26 @@
  *          properties:
  *              email:
  *                  type: string
- *                  default: Priyanshu
+ *                  default: priyanshuchourasia916@gmail.com
  *              password:
  *                  type: string
- *                  default: password 
+ *                  default: Priyanshu123
+ *      GetUserLoginInfo:
+ *          type: object
+ *          properties:
+ *              _id:
+ *                  type: string
+ *                  default: 550e8400-e29b-41d4-a716-446655440000
+ *              name:
+ *                  type: string
+ *                  default: name
+ *              email:
+ *                  type: string
+ *                  default: email
+ *              createdAt:
+ *                  type: string
+ *                  format: date-time
+ *              updatedAt:
+ *                  type: string
+ *                  fromat: date-time
  */

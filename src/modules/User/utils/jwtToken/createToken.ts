@@ -5,19 +5,20 @@ import jwt from "jsonwebtoken";
 
 export interface IJWTinterface{
     userId:string;
-    email:string
+    email:string;
+    time:string;
 }
 
 
 
 
-export async function createJwtToken(to:IJWTinterface):Promise<string>{
+export async function createJwtToken(jwtToken:IJWTinterface):Promise<string>{
     try{
         const token = jwt.sign(
-            { id: to.userId, email: to.email },
+            { id: jwtToken.userId, email: jwtToken.email },
             "Priyashu",
             {
-                expiresIn: "1h"
+                expiresIn: jwtToken.time
             }
         );
         return token;

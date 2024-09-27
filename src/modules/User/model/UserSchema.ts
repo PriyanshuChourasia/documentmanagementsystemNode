@@ -34,11 +34,6 @@ const UserSchema = new Schema<IUserSchemaInterface>({
             return this.findOne({email:email});
         }
     },
-    methods:{
-        checkUserPassword(password:string,userPassword:string){
-            return  comparePassword({requestedPassword:password,userPassword:userPassword});
-        }
-    }
 });
 
 

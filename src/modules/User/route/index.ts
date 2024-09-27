@@ -76,8 +76,18 @@ userRouter.get('/all',UserController.index);
  *                  application/json:
  *                      schema:
  *                        $ref: '#/components/schemas/UserLogin'
+ *      responses:
+ *          200:
+ *              description: Login Tokens
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                        $ref: '#/components/schemas/GetUserLoginInfo'
+ *          400:
+ *              description: Bad Request
+ *                  
  */
-userRouter.get('/authenticate',UserController.login)
+userRouter.post('/authenticate',UserController.login)
 
 
 /**

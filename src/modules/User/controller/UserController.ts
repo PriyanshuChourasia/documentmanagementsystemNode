@@ -3,7 +3,7 @@ import UserModel from "@modules/User/model/UserSchema";
 import {StatusCodes} from "http-status-codes";
 import { passwordEncrypt } from "../utils/bycrypt/passwordBycrypt";
 import { createJwtToken } from "../utils/jwtToken/createToken";
-import { CustomLoginInterface } from "../interface/RequestInterface";
+import { comparePassword } from "../utils/bycrypt/comparePassword";
 
 
 class UserController{
@@ -38,7 +38,30 @@ class UserController{
 
     async login(req:Request,res:Response){
         const {email,password} = req.body;
-        
+        const userExists = await UserModel.findEmailExists(email);
+        if(userExists)
+        {
+            const passwordComp = await comparePassword({userPassword:userExists.password,requestedPassword:password});
+            if(passwordComp)
+            {
+                res.status(StatusCodes.OK).json({
+                    data:userExists,
+                    status:true
+                });
+            }
+            else if(!passwordComp)
+            {
+                res.status(StatusCodes.OK).json({
+                    error:"Check your password",
+                    status:false
+                })
+            }
+        }else if(!userExists){
+            res.status(StatusCodes.BAD_REQUEST).json({
+                error:"User not found",
+                status: false
+            })
+        }
     }
 
 }
