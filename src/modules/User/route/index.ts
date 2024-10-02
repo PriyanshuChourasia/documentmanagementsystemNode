@@ -15,6 +15,13 @@ userRouter.post('/authenticate',UserController.login)
 
 userRouter.get('/:id',);
 
+userRouter.get('/userid',(req,res)=>{
+    res.status(200).json({
+        data:"Priyanshu",
+        status:true
+    })
+})
+
 
 
 
