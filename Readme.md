@@ -19,6 +19,6 @@ Table of Contents
 * User Authentication: JWT token is being used for authentication. Scure login and user management.
 * Document upload: Easily upload documents in various formats.
 
-### Project Status
+### Project Status: runnning
 
 Register and Login API has been created swagger autogen is being integrated
