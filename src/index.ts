@@ -10,6 +10,7 @@ import { connectDB } from "./config/database";
 import swaggerDoc from "./utils/apiDoc/SwaggerApiDoc";
 import apiLogger from "@/utils/logs/index";
 import morgan from "morgan";
+import swaggerAutoGenDoc from "./utils/apiDoc/SwaggerAutoGen";
 
 
 const app = express();
@@ -54,7 +55,9 @@ app.use('/api/v1',appRouter);
 /**
  * Running Swaggwer Api Documentation
  */
-swaggerDoc(app);
+// swaggerDoc(app);
+
+swaggerAutoGenDoc(app);
 
 
 /**

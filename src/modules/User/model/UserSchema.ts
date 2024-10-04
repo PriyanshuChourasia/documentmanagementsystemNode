@@ -1,5 +1,6 @@
 import { Mongoose } from "../../../config/database";
 import { IUserModel, IUserSchemaInterface } from "../interface/UserSchemaInterface";
+import { comparePassword } from "../utils/bycrypt/comparePassword";
 
 const {Schema} = Mongoose;
 
@@ -28,8 +29,11 @@ const UserSchema = new Schema<IUserSchemaInterface>({
     statics:{
         findEmailExists(email:string){
             return this.findOne({email})
+        },
+        getUserByEmail(email:string){
+            return this.findOne({email:email});
         }
-    }
+    },
 });
 
 
