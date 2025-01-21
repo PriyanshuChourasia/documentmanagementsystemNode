@@ -9,7 +9,6 @@ function runCommand(){
     });
     
     rl.question(`What is you name? `,(name:string) =>{
-        console.log(name);
         rl.close();
     })
 } 

@@ -10,7 +10,6 @@ class UserController{
 
     async index(req:Request,res:Response){
         const header = req.headers.accept;
-        console.log(header,'header accept');
         const userAll = await UserModel.find({});
         return res.status(StatusCodes.OK).json({
             data:{

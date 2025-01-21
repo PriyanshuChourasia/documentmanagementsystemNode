@@ -5,8 +5,10 @@ dotenv.config();
 
 const envSchema = z.object({
     PORT: z.string().min(1).transform((val)=> parseInt(val,10)),
-    MYSQL_DB_NAME: z.string().default('DocumentDB'),
-    HOST_NAME: z.string().default('localhost'),
+    MYSQL_DB_NAME: z.string(),
+    HOST_NAME: z.string().optional().default('localhost'),
+    DB_USERNAME: z.string(),
+    DB_PASSWORD: z.string(),
     DB_URL: z.string().url(),
     API_KEY: z.string().min(1).optional(),
     NODE_ENV: z.enum(['development','production','test']).optional(),

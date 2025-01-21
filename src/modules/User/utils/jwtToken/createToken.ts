@@ -24,7 +24,6 @@ export async function createJwtToken(jwtToken:IJWTinterface):Promise<string>{
         return token;
     }catch(error:unknown)
     {
-        console.log(error);
         throw new Error("Token not created");
     }
 }
