@@ -4,32 +4,15 @@ import { UserRegistrationSchema } from "@modules/User/utils/schema/UserRegistrat
 import express from "express";
 import UserController from "@modules/User/controller/UserController";
 const userRouter = express.Router();
+import cors from "cors";
 
 
 
-userRouter.post('/', validateRequest(UserRegistrationSchema),validateEmail, UserController.save);
+userRouter.post('/api/v1/user/', validateRequest(UserRegistrationSchema),validateEmail, UserController.save,cors());
 
 userRouter.get('/all',UserController.index);
 
 userRouter.post('/authenticate',UserController.login)
-
-userRouter.get('/:id',);
-
-userRouter.get('/userid',(req,res)=>{
-    res.status(200).json({
-        data:"Priyanshu",
-        status:true
-    })
-})
-
-
-
-
-
-
-
-
-
 
 
 export {userRouter};

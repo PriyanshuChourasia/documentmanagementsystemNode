@@ -3,43 +3,48 @@
   "info": {
     "version": "1.0.0",
     "title": "Document Management System",
-    "description": "API Documentation of Document management system"
+    "description": "API Documentation of Document management system",
+    "contact": {
+      "name": "API Support",
+      "email": "priyanshuchourasia916@gmail.com"
+    }
   },
   "servers": [
     {
-      "url": "http://localhost::8082/api/v1",
+      "url": "http://localhost::8082",
       "description": "Local server url"
     },
     {
-      "url": "https://priyanshu.co.in/api/v1",
+      "url": "https://priyanshu.co.in/",
       "description": "Secure DMS server"
     }
   ],
   "paths": {
-    "/": {
+    "/api/v1/user/": {
       "post": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "Register user",
+        "description": "This api is used to save user in database",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "User response after",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserResponse"
+                }
+              }
+            }
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "password": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/CreateUserInput"
               }
             }
           }
@@ -48,7 +53,11 @@
     },
     "/all": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "Get All Users",
+        "description": "This is mongodb api and used to get all users",
         "parameters": [
           {
             "name": "accept",
@@ -67,7 +76,11 @@
     },
     "/authenticate": {
       "post": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "User login api",
+        "description": "TThi api is used to get authentication token to access all routes",
         "responses": {
           "default": {
             "description": ""
@@ -91,26 +104,6 @@
           }
         }
       }
-    },
-    "/{id}": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/userid": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -118,6 +111,55 @@
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "CreateUserInput": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "default": "Priyanshu"
+          },
+          "email": {
+            "type": "string",
+            "default": "user123@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "default": "strongPassword123"
+          }
+        },
+        "example": {
+          "name": "Priyanshu Chourasia",
+          "email": "priyanshuchourasia365@gmail.com",
+          "password": "StrongPassword123"
+        }
+      },
+      "CreateUserResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
       }
     },
     "securitySchemes": {

@@ -49,7 +49,7 @@ app.use(morgan(morganApiFormat,{
 
 
 
-app.use('/api/v1',appRouter);
+app.use('/api/v1',appRouter,cors());
 
 
 /**

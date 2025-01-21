@@ -11,21 +11,69 @@ const doc = {
     info:{
         version:"1.0.0",
         title:"Document Management System",
-        description:"API Documentation of Document management system"
+        description:"API Documentation of Document management system",
+        contact:{
+            name:"API Support",
+            email:"priyanshuchourasia916@gmail.com"
+        }
     },
     host:"localhost::8082/api/v1/",
-    schemes:['http','https'],
     servers:[
         {
-            url:`http://localhost::${env.PORT}/api/v1`,
+            url:`http://localhost::${env.PORT}`,
             description:"Local server url"
         },
         {
-            url:'https://priyanshu.co.in/api/v1',
+            url:'https://priyanshu.co.in/',
             description:"Secure DMS server"
         }
     ],
     components:{
+        '@schemas':{
+            CreateUserInput:{
+                type: 'object',
+                required: ['name','email','password'],
+                properties:{
+                    name:{
+                        type: 'string',
+                        default: 'Priyanshu'
+                    },
+                    email:{
+                        type: 'string',
+                        default:'user123@gmail.com'
+                    },
+                    password:{
+                        type: 'string',
+                        default: 'strongPassword123'
+                    }
+                },
+                example:{
+                    name:"Priyanshu Chourasia",
+                    email:"priyanshuchourasia365@gmail.com",
+                    password:"StrongPassword123"
+                }
+            },
+            CreateUserResponse:{
+                type:'object',
+                properties:{
+                    _id:{
+                        type: 'string'
+                    },
+                    name:{
+                        type: 'string'
+                    },
+                    email:{
+                        type: 'string'
+                    },
+                    createdAt:{
+                        type: 'string'
+                    },
+                    updatedAt:{
+                        type: 'string'
+                    }
+                }
+            }
+        },
         securitySchemas:{
             bearerAuth:{
                 type:'http',
