@@ -17,9 +17,10 @@ class MySqlConnect{
     }    
 
 
-    protected sequalize:Sequelize =  new Sequelize(this.databaseName,this.username,"",{
+    protected sequalize:Sequelize =  new Sequelize(this.databaseName,this.username,this.password,{
         host: this.hostName,
-        dialect: 'mysql'
+        dialect: 'mysql',
+        // logging:(...msg)=> console.log(msg)
     });
 
     async dbConnect(){
@@ -30,6 +31,8 @@ class MySqlConnect{
             console.error(error.original.sqlMessage,"Error");
         }
     }
+
+
     
 }
 
