@@ -6,11 +6,8 @@ import compression from "compression";
 import cors from "cors";
 import { env } from "./config/env.config";
 import { appRouter } from "./routes";
-// import { connectDB } from "./config/database";
-// import swaggerDoc from "./utils/apiDoc/SwaggerApiDoc";
 import apiLogger from "@/utils/logs/index";
 import morgan from "morgan";
-// import swaggerAutoGenDoc from "./utils/apiDoc/SwaggerAutoGen";
 import { mysqlConnection } from "./config/mysql/connection";
 
 const app = express();
@@ -51,6 +48,8 @@ app.use(morgan(morganApiFormat,{
 
 app.use('/api/v1',appRouter);
 
+
+// MySql Connection function
 mysqlConnection.dbConnect();
 
 /**
